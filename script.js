@@ -58,7 +58,7 @@ function selectSkin(weapon) {
         let img = document.createElement("img");
         img.className = "skinOptionImg";
         img.src = skins[weapon][skin];
-        img.setAttribute("onClick", "javascript: highLightedSkin='" + skin + "';");
+        img.setAttribute("onClick", "javascript: highLight('" + skin + "');");
         skinSelectSkinOptions.appendChild(img);
     });
 }
@@ -74,4 +74,10 @@ function equipSkin() {
     skinSelect.style.visibility = "hidden";
     let skinImg = document.getElementsByClassName("img" + weapon)[0];
     skinImg.src = skins[weapon][highLightedSkin];
+}
+
+function highLight(skin)
+{
+    highLightedSkin = skin
+    skinSelectSelectedImage.src = skins[titleCase(skinSelectWeaponName.innerText)][skin];
 }
