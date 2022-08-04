@@ -159,7 +159,7 @@ h1 {
     text-transform: none;
 }
 
-header>* {
+header>*, footer>* {
     display: inline-block;
     margin-right: 1vw;
 }

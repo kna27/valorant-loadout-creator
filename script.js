@@ -19,10 +19,19 @@ fetch("https://valorant-api.com/v1/weapons")
                 wSkin["Standard " + weapon.displayName] = weapon.displayIcon;
             });
             skins[weapon.displayName] = wSkin;
-        })
+        });
     }).then(() => {
+        removeMissingSkins();
         loadPage();
     }).catch(err => console.error(err));
+
+function removeMissingSkins() {
+    delete skins["Marshal"]["Sovereign Marshal"];
+    delete skins["Guardian"]["Prime Guardian"];
+    delete skins["Guardian"]["Sovereign Guardian"];
+    delete skins["Melee"]["Luxe Knife"];
+    delete skins["Melee"]["Melee"];
+}
 
 function loadPage() {
     Array.prototype.forEach.call(document.getElementsByClassName("weapon"), function (element) {
@@ -99,4 +108,61 @@ function randomLoadout() {
 function highLight(skin) {
     highLightedSkin = skin
     skinSelectSelectedImage.src = skins[titleCase(skinSelectWeaponName.innerText)][skin];
+}
+
+function missingSkins() {
+    alert(`Due to API limitations, the following skins are unavailable:
+    Nitro Odin 
+    Snowfall Ares 
+    Aristocrat Vandal 
+    Nitro Vandal 
+    Aristocrat Bulldog 
+    Genesis Bulldog 
+    Rush Phantom 
+    Kingdom Phantom 
+    Galleria Phantom 
+    Artisan Phantom 
+    Snowfall Phantom 
+    Rush Judge 
+    dot EXE Judge 
+    Snowfall Judge 
+    Galleria Bucky 
+    Genesis Bucky 
+    Artisan Bucky 
+    Rush Frenzy 
+    Couture Frenzy 
+    Spitfire Frenzy 
+    Kingdom Classic 
+    Snowfall Classic 
+    Final Chamber Classic 
+    dot EXE Ghost 
+    Hush Ghost 
+    Artisan Ghost 
+    Vendetta Ghost 
+    Soul Silencer Ghost 
+    Aristocrat Sheriff 
+    Protektor Sheriff 
+    Game Over Sheriff 
+    Genesis Shorty 
+    Nitro Operator 
+    Genesis Operator 
+    Nitro Guardian 
+    Galleria Guardian 
+    Couture Marshal 
+    Galleria Marshal 
+    Artisan Marshal 
+    Prime Spectre 
+    Kingdom Spectre 
+    Aristocrat Stinger 
+    Couture Stinger 
+    Blade of Serket 
+    Prime Axe 
+    Genesis Arc 
+    Artisan Foil 
+    Snowfall Wand
+    Sovereign Marshal
+    Prime Guardian
+    Sovereign Guardian
+    Luxe Knife
+    `)
 }
