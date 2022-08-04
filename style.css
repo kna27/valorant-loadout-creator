@@ -87,6 +87,7 @@
 
 .parent>div {
     background-color: rgba(255, 255, 255, 0.35);
+    position: relative;
 }
 
 .weaponType {
@@ -102,4 +103,14 @@ body {
 
 html, body {
     height: 100%;
+}
+
+.weaponName {
+    vertical-align: bottom;
+    text-align: center;
+    color: white;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.25);
 }
