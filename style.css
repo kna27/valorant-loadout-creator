@@ -1,0 +1,105 @@
+.Classic {
+    grid-area: Classic;
+}
+
+.Shorty {
+    grid-area: Shorty;
+}
+
+.Frenzy {
+    grid-area: Frenzy;
+}
+
+.Ghost {
+    grid-area: Ghost;
+}
+
+.Sheriff {
+    grid-area: Sheriff;
+}
+
+.Stinger {
+    grid-area: Stinger;
+}
+
+.Spectre {
+    grid-area: Spectre;
+}
+
+.Bucky {
+    grid-area: Bucky;
+}
+
+.Judge {
+    grid-area: Judge;
+}
+
+.Bulldog {
+    grid-area: Bulldog;
+}
+
+.Guardian {
+    grid-area: Guardian;
+}
+
+.Phantom {
+    grid-area: Phantom;
+}
+
+.Vandal {
+    grid-area: Vandal;
+}
+
+.Marshal {
+    grid-area: Marshal;
+}
+
+.Operator {
+    grid-area: Operator;
+}
+
+.Ares {
+    grid-area: Ares;
+}
+
+.Odin {
+    grid-area: Odin;
+}
+
+.Melee {
+    grid-area: Melee;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: 10.1vw 16.3vw 18.2vw 19.75vw;
+    grid-template-rows: repeat(5, 7.05vw);
+    grid-template-areas:
+        'Classic Stinger Bulldog Marshal'
+        'Shorty Spectre Guardian Operator'
+        'Frenzy Bucky Phantom Ares'
+        'Ghost Judge Vandal Odin '
+        'Sheriff . . Melee';
+    grid-column-gap: 1.5vw;
+    grid-row-gap: 1.5vw;
+    justify-content: center;
+}
+
+.parent>div {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.weaponType {
+    color: #fffcdc;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -1.2vw;
+}
+
+body {
+    background-color: #5c7bb0;
+}
+
+html, body {
+    height: 100%;
+}
