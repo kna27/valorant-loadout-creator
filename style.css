@@ -103,6 +103,7 @@
 body {
     background-color: #5c7bb0;
     font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
 }
 
 html, body {
@@ -131,6 +132,10 @@ html, body {
     line-height: 6vw;
 }
 
+.imgContainer:hover {
+    cursor: pointer;
+}
+
 .weaponImg {
     width: 90%;
     margin: auto;
@@ -149,10 +154,11 @@ html, body {
     width: 75%;
 }
 
-header > * {
+header>* {
     display: inline-block;
     color: white;
     margin-right: 1vw;
+    text-transform: none;
 }
 
 footer {
@@ -164,6 +170,7 @@ footer {
     height: 2vw;
     background-color: rgba(255, 255, 255, 0.25);
     color: white;
+    text-transform: none;
 }
 
 footer a {
@@ -172,4 +179,48 @@ footer a {
 
 footer a:hover {
     text-decoration: none;
+}
+
+#skinSelect {
+    width: 70%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    background-color: rgba(122, 122, 122, 0.95);
+    border-radius: 10px;
+    z-index: 1;
+}
+
+#skinChange_WeaponName {
+    color: #fffcdc;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#skinChange_SelectedImage {
+    max-width: 80%;
+    max-height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#skinChange_SelectedSkinName {
+    color: white;
+    font-weight: lighter;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.skinOptionImg {
+    width: 5vw;
+    height: 5vw;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid white;
 }

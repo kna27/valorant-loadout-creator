@@ -1,4 +1,12 @@
 var skins = {};
+var skinSelect = document.getElementById("skinSelect");
+var skinSelectWeaponName = document.getElementById("skinChange_WeaponName");
+var skinSelectSelectedImage = document.getElementById("skinChange_SelectedImage");
+var skinSelectSkinOptions = document.getElementById("skinChange_SkinOptions");
+var highLightedSkin = "";
+
+skinSelect.style.visibility = "hidden";
+
 fetch("https://valorant-api.com/v1/weapons")
     .then(response => response.json())
     .then(json => {
@@ -12,9 +20,9 @@ fetch("https://valorant-api.com/v1/weapons")
             });
             skins[weapon.displayName] = wSkin;
         })
-    }).then(()=>{
+    }).then(() => {
         loadPage();
-        }).catch(err => console.error(err));
+    }).catch(err => console.error(err));
 
 function loadPage() {
     Array.prototype.forEach.call(document.getElementsByClassName("weapon"), function (element) {
@@ -24,6 +32,7 @@ function loadPage() {
         nameDiv.innerHTML = weapon.toUpperCase();
 
         let imgContainer = document.createElement("div");
+        imgContainer.setAttribute("onClick", "javascript: selectSkin(this);");
         imgContainer.className = "imgContainer";
 
         let img = document.createElement("img");
@@ -34,4 +43,35 @@ function loadPage() {
         imgContainer.appendChild(img);
         element.appendChild(imgContainer);
     });
+}
+
+function selectSkin(weapon) {
+    weapon = weapon.parentNode.className.split(" ").at(-1);
+    skinSelectSelectedImage.src = skins[weapon]["Standard " + weapon];
+    highLightedSkin = "Standard " + weapon;
+    skinSelect.style.visibility = "visible";
+    skinSelectWeaponName.innerText = weapon;
+    while (skinSelectSkinOptions.firstChild) {
+        skinSelectSkinOptions.removeChild(skinSelectSkinOptions.firstChild);
+    }
+    Object.keys(skins[weapon]).forEach(skin => {
+        let img = document.createElement("img");
+        img.className = "skinOptionImg";
+        img.src = skins[weapon][skin];
+        img.setAttribute("onClick", "javascript: highLightedSkin='" + skin + "';");
+        skinSelectSkinOptions.appendChild(img);
+    });
+}
+
+function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function (word) {
+        return (word.charAt(0).toUpperCase() + word.slice(1));
+    }).join(' ');
+}
+
+function equipSkin() {
+    weapon = titleCase(skinSelectWeaponName.innerText);
+    skinSelect.style.visibility = "hidden";
+    let skinImg = document.getElementsByClassName("img" + weapon)[0];
+    skinImg.src = skins[weapon][highLightedSkin];
 }
