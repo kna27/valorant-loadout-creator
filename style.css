@@ -154,11 +154,14 @@ html, body {
     width: 75%;
 }
 
+h1 {
+    color: white;
+    text-transform: none;
+}
+
 header>* {
     display: inline-block;
-    color: white;
     margin-right: 1vw;
-    text-transform: none;
 }
 
 footer {

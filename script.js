@@ -76,6 +76,22 @@ function equipSkin() {
     skinImg.src = skins[weapon][highLightedSkin];
 }
 
+function resetLoadout(){
+    Array.prototype.forEach.call(document.getElementsByClassName("weapon"), function (element) {
+        let weapon = element.className.split(" ").at(-1)
+        let skinImg = document.getElementsByClassName("img" + weapon)[0];
+        skinImg.src = skins[weapon]["Standard " + weapon];
+    });
+}
+
+function randomLoadout(){
+    Array.prototype.forEach.call(document.getElementsByClassName("weapon"), function (element) {
+        let weapon = element.className.split(" ").at(-1)
+        let skinImg = document.getElementsByClassName("img" + weapon)[0];
+        skinImg.src = skins[weapon][Object.keys(skins[weapon])[Math.floor(Math.random() * Object.keys(skins[weapon]).length)]];
+    });
+}
+
 function highLight(skin)
 {
     highLightedSkin = skin
