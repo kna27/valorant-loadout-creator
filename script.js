@@ -31,7 +31,7 @@ function removeMissingSkins() {
     delete skins["Guardian"]["Sovereign Guardian"];
     delete skins["Melee"]["Luxe Knife"];
     delete skins["Melee"]["Melee"];
-    Object.keys(skins).forEach(weapon=>{
+    Object.keys(skins).forEach(weapon => {
         delete skins[weapon]["Random Favorite Skin"];
     })
 }
@@ -168,4 +168,9 @@ function missingSkins() {
     Sovereign Guardian
     Luxe Knife
     `)
+}
+
+function about() {
+    alert(`This is a tool to help you create a loadout for Valorant without paying for skins.
+This website can help you to stop wasting money on skins and decide which ones you really want.`)
 }
