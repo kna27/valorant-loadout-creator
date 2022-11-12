@@ -31,6 +31,9 @@ function removeMissingSkins() {
     delete skins["Guardian"]["Sovereign Guardian"];
     delete skins["Melee"]["Luxe Knife"];
     delete skins["Melee"]["Melee"];
+    Object.keys(skins).forEach(weapon=>{
+        delete skins[weapon]["Random Favorite Skin"];
+    })
 }
 
 function loadPage() {
