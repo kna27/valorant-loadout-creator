@@ -241,6 +241,14 @@ footer a:hover {
     font-size: 2.5em;
 }
 
+#skinChange_SelectButton
+{
+    float: right;
+    position: relative;
+    margin-top: -4vw;
+    margin-right: 3vw;
+}
+
 .skinOptionImg {
     width: 5vw;
     height: 5vw;
