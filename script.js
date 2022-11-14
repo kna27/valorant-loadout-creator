@@ -1,6 +1,7 @@
 const skinSelect = document.getElementById("skinSelect");
 const skinSelectWeaponName = document.getElementById("skinChange_WeaponName");
-const skinSelectSelectedImage = document.getElementById("skinChange_SelectedImage");
+const skinSelectSelectedImg = document.getElementById("skinChange_SelectedImg");
+const skinSelectSelected = document.getElementById("skinChange_Selected");
 const skinSelectSkinOptions = document.getElementById("skinChange_SkinOptions");
 var skins = {};
 var equippedSkins = {};
@@ -73,7 +74,8 @@ const loadPage = () => {
 const selectSkin = (weapon) => {
     weapon = weapon.parentNode.className.split(" ").at(-1);
     highLightedSkin = equippedSkins[weapon];
-    skinSelectSelectedImage.src = skins[weapon][equippedSkins[weapon]];
+    skinSelectSelectedImg.src = skins[weapon][equippedSkins[weapon]];
+    skinSelectSelected.innerHTML = equippedSkins[weapon];
     skinSelect.style.visibility = "visible";
     skinSelectWeaponName.innerText = weapon;
     while (skinSelectSkinOptions.firstChild) {
@@ -126,8 +128,9 @@ const randomLoadout = () => {
 
 const highLight = (skin) => {
     highLightedSkin = skin;
-    skinSelectSelectedImage.src =
+    skinSelectSelectedImg.src =
         skins[titleCase(skinSelectWeaponName.innerText)][skin];
+    skinSelectSelected.innerHTML = skin;
 }
 
 const titleCase = (str) => {
