@@ -7,7 +7,7 @@ var equippedSkins = {};
 var highLightedSkin = "";
 
 fetch("https://valorant-api.com/v1/weapons")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(json => {
         JSON.parse(JSON.stringify(json.data)).forEach(weapon => {
             let wSkin = {};
@@ -141,64 +141,16 @@ const equipAllSkins = () => {
 }
 
 const missingSkins = () => {
-    alert(`Due to API limitations, the following skins are unavailable:
-    Nitro Odin 
-    Snowfall Ares 
-    Aristocrat Vandal 
-    Nitro Vandal 
-    Aristocrat Bulldog 
-    Genesis Bulldog 
-    Rush Phantom 
-    Kingdom Phantom 
-    Galleria Phantom 
-    Artisan Phantom 
-    Snowfall Phantom 
-    Rush Judge 
-    dot EXE Judge 
-    Snowfall Judge 
-    Galleria Bucky 
-    Genesis Bucky 
-    Artisan Bucky 
-    Rush Frenzy 
-    Couture Frenzy 
-    Spitfire Frenzy 
-    Kingdom Classic 
-    Snowfall Classic 
-    Final Chamber Classic 
-    dot EXE Ghost 
-    Hush Ghost 
-    Artisan Ghost 
-    Vendetta Ghost 
-    Soul Silencer Ghost 
-    Aristocrat Sheriff 
-    Protektor Sheriff 
-    Game Over Sheriff 
-    Genesis Shorty 
-    Nitro Operator 
-    Genesis Operator 
-    Nitro Guardian 
-    Galleria Guardian 
-    Couture Marshal 
-    Galleria Marshal 
-    Artisan Marshal 
-    Prime Spectre 
-    Kingdom Spectre 
-    Aristocrat Stinger 
-    Couture Stinger 
-    Blade of Serket 
-    Prime Axe 
-    Genesis Arc 
-    Artisan Foil 
-    Snowfall Wand
-    Sovereign Marshal
-    Prime Guardian
-    Sovereign Guardian
-    Luxe Knife
-    `);
+    fetch("./missingSkins.txt")
+        .then(res => res.text()).then(text => {
+            alert(`Due to API limitations, the following skins are unavailable:
+${text}`);
+        });
 }
 
 const about = () => {
     alert(
-        `This tool helps you create a Valorant loadout without paying for skins.
-It can help you to stop wasting money on skins and decide which ones you really want.`);
+        `This tool helps you by letting you:
+1. Create a Valorant loadout without paying for skins.
+2. Stop wasting money on skins and decide which ones you really want.`);
 }
