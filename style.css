@@ -1,13 +1,13 @@
 @font-face {
     font-family: "DIN Next";
     font-weight: bold;
-    src: url("/fonts/DINNextRegular.otf")
+    src: url("./fonts/DINNextRegular.otf")
 }
 
 @font-face {
     font-family: "DIN Next";
     font-weight: normal;
-    src: url("/fonts/DINNextLight.otf")
+    src: url("./fonts/DINNextLight.otf")
 }
 
 html, body {
