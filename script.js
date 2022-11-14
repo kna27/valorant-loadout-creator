@@ -36,6 +36,16 @@ const removeMissingSkins = () => {
     });
 }
 
+const equipAllSkins = () => {
+    if (localStorage.getItem("equippedSkins")) {
+        equippedSkins = JSON.parse(localStorage.getItem("equippedSkins"));
+    } else {
+        Object.keys(skins).forEach(weapon => {
+            equippedSkins[weapon] = `Standard ${weapon}`;
+        });
+    }
+}
+
 const loadPage = () => {
     skinSelect.style.visibility = "hidden";
     Array.prototype.forEach.call(document.getElementsByClassName("weapon"),
@@ -76,12 +86,6 @@ const selectSkin = (weapon) => {
         img.setAttribute("onClick", `javascript: highLight("${skin}");`);
         skinSelectSkinOptions.appendChild(img);
     });
-}
-
-const titleCase = (str) => {
-    return str.toLowerCase().split(" ").map((word) => {
-        return (word.charAt(0).toUpperCase() + word.slice(1));
-    }).join(" ");
 }
 
 const equipSkin = () => {
@@ -126,18 +130,14 @@ const highLight = (skin) => {
         skins[titleCase(skinSelectWeaponName.innerText)][skin];
 }
 
-const saveToLocalStorage = () => {
-    localStorage.setItem("equippedSkins", JSON.stringify(equippedSkins));
+const titleCase = (str) => {
+    return str.toLowerCase().split(" ").map((word) => {
+        return (word.charAt(0).toUpperCase() + word.slice(1));
+    }).join(" ");
 }
 
-const equipAllSkins = () => {
-    if (localStorage.getItem("equippedSkins")) {
-        equippedSkins = JSON.parse(localStorage.getItem("equippedSkins"));
-    } else {
-        Object.keys(skins).forEach(weapon => {
-            equippedSkins[weapon] = `Standard ${weapon}`;
-        });
-    }
+const saveToLocalStorage = () => {
+    localStorage.setItem("equippedSkins", JSON.stringify(equippedSkins));
 }
 
 const missingSkins = () => {
