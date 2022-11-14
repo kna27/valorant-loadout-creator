@@ -17,7 +17,7 @@ fetch("https://valorant-api.com/v1/weapons")
                 if (skin.displayIcon) {
                     wSkin[skin.displayName] = skin.displayIcon;
                 }
-                wSkin["Standard " + weapon.displayName] = weapon.displayIcon;
+                wSkin[`Standard ${weapon.displayName}`] = weapon.displayIcon;
             });
             skins[weapon.displayName] = wSkin;
         });
@@ -50,7 +50,7 @@ function loadPage() {
         imgContainer.className = "imgContainer";
 
         let img = document.createElement("img");
-        img.className = "weaponImg img" + weapon;
+        img.className = `weaponImg img${weapon}`;
         img.innerHTML = weapon.toUpperCase();
         img.src = skins[weapon][equippedSkins[weapon]];
         element.appendChild(nameDiv);
@@ -72,22 +72,22 @@ function selectSkin(weapon) {
         let img = document.createElement("img");
         img.className = "skinOptionImg";
         img.src = skins[weapon][skin];
-        img.setAttribute("onClick", "javascript: highLight('" + skin + "');");
+        img.setAttribute("onClick", `javascript: highLight("${skin}");`);
         skinSelectSkinOptions.appendChild(img);
     });
 }
 
 function titleCase(str) {
-    return str.toLowerCase().split(' ').map(function (word) {
+    return str.toLowerCase().split(" ").map(function (word) {
         return (word.charAt(0).toUpperCase() + word.slice(1));
-    }).join(' ');
+    }).join(" ");
 }
 
 function equipSkin() {
     weapon = titleCase(skinSelectWeaponName.innerText);
     equippedSkins[weapon] = highLightedSkin;
     skinSelect.style.visibility = "hidden";
-    let skinImg = document.getElementsByClassName("img" + weapon)[0];
+    let skinImg = document.getElementsByClassName(`img${weapon}`)[0];
     skinImg.src = skins[weapon][highLightedSkin];
     saveToLocalStorage();
 }
@@ -95,9 +95,9 @@ function equipSkin() {
 function resetLoadout() {
     Array.prototype.forEach.call(document.getElementsByClassName("weapon"), function (element) {
         let weapon = element.className.split(" ").at(-1)
-        let skinImg = document.getElementsByClassName("img" + weapon)[0];
-        skinImg.src = skins[weapon]["Standard " + weapon];
-        equippedSkins[weapon] = "Standard " + weapon;
+        let skinImg = document.getElementsByClassName(`img${weapon}`)[0];
+        skinImg.src = skins[weapon][`Standard ${weapon}`];
+        equippedSkins[weapon] = `Standard ${weapon}`;
         saveToLocalStorage();
     });
 }
@@ -105,9 +105,9 @@ function resetLoadout() {
 function randomLoadout() {
     Array.prototype.forEach.call(document.getElementsByClassName("weapon"), function (element) {
         let weapon = element.className.split(" ").at(-1)
-        let skinImg = document.getElementsByClassName("img" + weapon)[0];
-        let randomSkin = "Standard " + weapon;
-        while (randomSkin == "Standard " + weapon) {
+        let skinImg = document.getElementsByClassName(`img${weapon}`)[0];
+        let randomSkin = `Standard ${weapon}`;
+        while (randomSkin === `Standard ${weapon}`) {
             randomSkin = Object.keys(skins[weapon])[Math.floor(Math.random() * Object.keys(skins[weapon]).length)]
         }
         skinImg.src = skins[weapon][randomSkin];
@@ -130,7 +130,7 @@ function equipAllSkins() {
         equippedSkins = JSON.parse(localStorage.getItem("equippedSkins"));
     } else {
         Object.keys(skins).forEach(weapon => {
-            equippedSkins[weapon] = "Standard " + weapon;
+            equippedSkins[weapon] = `Standard ${weapon}`;
         });
     }
 }
