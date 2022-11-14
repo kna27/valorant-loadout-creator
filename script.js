@@ -1,4 +1,5 @@
 var skins = {};
+var equippedSkins = {};
 var skinSelect = document.getElementById("skinSelect");
 var skinSelectWeaponName = document.getElementById("skinChange_WeaponName");
 var skinSelectSelectedImage = document.getElementById("skinChange_SelectedImage");
@@ -22,6 +23,9 @@ fetch("https://valorant-api.com/v1/weapons")
         });
     }).then(() => {
         removeMissingSkins();
+        Object.keys(skins).forEach(weapon => {
+            equippedSkins[weapon] = "Standard " + weapon;
+        });
         loadPage();
     }).catch(err => console.error(err));
 
@@ -50,7 +54,7 @@ function loadPage() {
         let img = document.createElement("img");
         img.className = "weaponImg img" + weapon;
         img.innerHTML = weapon.toUpperCase();
-        img.src = skins[weapon]["Standard " + weapon];
+        img.src = skins[weapon][equippedSkins[weapon]];
         element.appendChild(nameDiv);
         imgContainer.appendChild(img);
         element.appendChild(imgContainer);
@@ -59,8 +63,8 @@ function loadPage() {
 
 function selectSkin(weapon) {
     weapon = weapon.parentNode.className.split(" ").at(-1);
-    skinSelectSelectedImage.src = skins[weapon]["Standard " + weapon];
-    highLightedSkin = "Standard " + weapon;
+    highLightedSkin = equippedSkins[weapon];
+    skinSelectSelectedImage.src = skins[weapon][equippedSkins[weapon]];
     skinSelect.style.visibility = "visible";
     skinSelectWeaponName.innerText = weapon;
     while (skinSelectSkinOptions.firstChild) {
@@ -83,6 +87,7 @@ function titleCase(str) {
 
 function equipSkin() {
     weapon = titleCase(skinSelectWeaponName.innerText);
+    equippedSkins[weapon] = highLightedSkin;
     skinSelect.style.visibility = "hidden";
     let skinImg = document.getElementsByClassName("img" + weapon)[0];
     skinImg.src = skins[weapon][highLightedSkin];
