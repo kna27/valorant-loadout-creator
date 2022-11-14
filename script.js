@@ -23,9 +23,7 @@ fetch("https://valorant-api.com/v1/weapons")
         });
     }).then(() => {
         removeMissingSkins();
-        Object.keys(skins).forEach(weapon => {
-            equippedSkins[weapon] = "Standard " + weapon;
-        });
+        equipAllSkins();
         loadPage();
     }).catch(err => console.error(err));
 
@@ -91,6 +89,7 @@ function equipSkin() {
     skinSelect.style.visibility = "hidden";
     let skinImg = document.getElementsByClassName("img" + weapon)[0];
     skinImg.src = skins[weapon][highLightedSkin];
+    saveToLocalStorage();
 }
 
 function resetLoadout() {
@@ -98,6 +97,8 @@ function resetLoadout() {
         let weapon = element.className.split(" ").at(-1)
         let skinImg = document.getElementsByClassName("img" + weapon)[0];
         skinImg.src = skins[weapon]["Standard " + weapon];
+        equippedSkins[weapon] = "Standard " + weapon;
+        saveToLocalStorage();
     });
 }
 
@@ -110,12 +111,28 @@ function randomLoadout() {
             randomSkin = Object.keys(skins[weapon])[Math.floor(Math.random() * Object.keys(skins[weapon]).length)]
         }
         skinImg.src = skins[weapon][randomSkin];
+        equippedSkins[weapon] = randomSkin;
+        saveToLocalStorage();
     });
 }
 
 function highLight(skin) {
     highLightedSkin = skin
     skinSelectSelectedImage.src = skins[titleCase(skinSelectWeaponName.innerText)][skin];
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem("equippedSkins", JSON.stringify(equippedSkins));
+}
+
+function equipAllSkins() {
+    if (localStorage.getItem("equippedSkins")) {
+        equippedSkins = JSON.parse(localStorage.getItem("equippedSkins"));
+    } else {
+        Object.keys(skins).forEach(weapon => {
+            equippedSkins[weapon] = "Standard " + weapon;
+        });
+    }
 }
 
 function missingSkins() {
