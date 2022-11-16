@@ -48,7 +48,6 @@ const equipAllSkins = () => {
 }
 
 const loadPage = () => {
-    skinSelect.style.visibility = "hidden";
     Array.prototype.forEach.call(document.getElementsByClassName("weapon"),
         (element) => {
             let weapon = element.className.split(" ").at(-1);
