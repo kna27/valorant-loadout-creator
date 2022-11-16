@@ -16,6 +16,8 @@ html, body {
 
 body {
     background: linear-gradient(rgb(40, 60, 90), rgb(75, 100, 150));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'DIN Next', sans-serif;
     text-transform: uppercase;
     font-weight: normal;
